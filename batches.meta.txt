@@ -1,11 +1,3 @@
-airplane
-automobile
-bird
-cat
-deer
-dog
-frog
-horse
-ship
-truck
-
+abandoned_area
+abandoned_asylum
+abandoned_boat

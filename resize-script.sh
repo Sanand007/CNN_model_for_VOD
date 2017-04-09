@@ -17,3 +17,18 @@ if [ `ls classes/*/*.png 2> /dev/null | wc -l ` -gt 0 ]; then
     file "$file" #uncomment for testing
   done
 fi
+
+if [ `ls test_set/*.jpg 2> /dev/null | wc -l ` -gt 0 ]; then
+  for file in test_set/*.jpg; do
+    convert "$file" -resize 32x32\! "${file%.*}.png"
+    file "$file" #uncomment for testing
+    rm "$file"
+  done
+fi
+
+if [ `ls test_set/*.png 2> /dev/null | wc -l ` -gt 0 ]; then
+  for file in test_set/*.png; do
+    convert "$file" -resize 32x32\! "${file%.*}.png"
+    file "$file" #uncomment for testing
+  done
+fi

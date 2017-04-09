@@ -1,3 +1,6 @@
 abandoned_area
 abandoned_asylum
 abandoned_boat
+abandoned_boys
+abandoned_building
+abandoned_car

@@ -26,8 +26,7 @@ data.tofile(output_file)
 output_file.close()
 
 
-
-'''for dirname, dirnames, filenames in os.walk('./test_set'):
+for dirname, dirnames, filenames in os.walk('./test_set'):
     for filename in filenames:
         if (filename.endswith('.jpg')):
             im = Image.open(os.path.join(dirname, filename))
@@ -44,4 +43,4 @@ output_file.close()
 
 output_file = open('test.bin', 'wb')
 data.tofile(output_file)
-output_file.close()'''
+output_file.close()

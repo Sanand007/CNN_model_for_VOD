@@ -43,7 +43,7 @@ with open('batches.meta.txt', 'w') as meta_file:
 				destpath = testpath + '/' + str(test_im_no) + '.jpg'
 				shutil.move(impath, destpath)
 				test_im_no += 1
-			if (counter == 5):
+			if (counter == 2):
 				break
 			testpath = 'test_set/' + str(counter)
 			os.makedirs(testpath)
@@ -56,7 +56,7 @@ with open('batches.meta.txt', 'w') as meta_file:
 			urlretrieve(str(X[i][1]), filepath)
 			counter+=1
 			string = str(X[i][0])
-		elif (image_num <= 10):
+		elif (image_num <= 1):
 			filepath = path + '/' + str(image_num) + '.jpg'
 			image_num += 1
 			urlretrieve(str(X[i][1]), filepath)

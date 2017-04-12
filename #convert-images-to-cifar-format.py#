@@ -33,6 +33,8 @@ for dirname, dirnames, filenames in os.walk('./test_set'):
         if (filename.endswith('.png')):
             im = Image.open(os.path.join(dirname, filename))
             pix = im.load()
+            if (len(pix) == 0):
+                continue
 
             class_name = int(os.path.join(dirname).split('/')[-1])
 

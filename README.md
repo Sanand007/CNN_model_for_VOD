@@ -1,4 +1,4 @@
-This model is capable to use visual ontology dataset to extract and write all the possible ANP's and then extract and download all the images of each class in separate folders and then convert the images to 32*32 bits and then convert it to .bin format.
+This model is capable to use visual ontology dataset to extract and write all the possible ANP's and then extract and download all the images of each class in separate folders and then convert the images to 32*32 bits and then divide the trainig dataset to 60 for training and 40 for testing and then convert it separately to .bin format.
 
 
 Go to VOD website and request to download the csv file containing all the ANP arranged with image url.

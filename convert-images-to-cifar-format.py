@@ -5,13 +5,14 @@ import os
 from array import *
 
 data = array('B')
-print("hello")
 for dirname, dirnames, filenames in os.walk('./classes'):
     for filename in filenames:
         if (filename.endswith('.png')):
-            print(filename)
+            #print(filename)
             im = Image.open(os.path.join(dirname, filename))
             pix = im.load()
+            if (str(dirname) == './classes/0' and str(filename) == '0.png'):
+                continue
 
             class_name = int(os.path.join(dirname).split('/')[-1])
 
@@ -21,9 +22,9 @@ for dirname, dirnames, filenames in os.walk('./classes'):
                 for x in range(0,32):
                     for y in range(0,32):
                         data.append(pix[x,y][color])
-                        print(pix[x, y][color])
+                        #print(pix[x, y][color])
 
-output_file = open('cnn-ready.bin', 'wb')
+output_file = open('data_batch_1.bin', 'wb')
 data.tofile(output_file)
 output_file.close()
 
@@ -46,3 +47,5 @@ for dirname, dirnames, filenames in os.walk('./test_set'):
 output_file = open('test.bin', 'wb')
 data.tofile(output_file)
 output_file.close()
+
+

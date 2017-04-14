@@ -8,6 +8,10 @@ from pandas import read_csv
 
 counter = 0
 
+os.system("rm -rf classes")
+os.system("rm -rf test_set")
+os.system("rm -rf cifar-10-batches-bin")
+
 os.makedirs('classes')
 os.makedirs('test_set')
 test_im_no = 0
@@ -36,14 +40,14 @@ with open('batches.meta.txt', 'w') as meta_file:
 			string = str(X[0][0])
 		elif (string != str(X[i][0])):
 			meta_file.write(str(X[i][0]) + '\n')
-			print(image_num)
+			#print(image_num)
 			sixty_per = int(image_num*0.6)
 			for m in range(sixty_per+1, image_num):
 				impath = path + '/' + str(m) + '.jpg'
 				destpath = testpath + '/' + str(test_im_no) + '.jpg'
 				shutil.move(impath, destpath)
 				test_im_no += 1
-			if (counter == 2):
+			if (counter == 4):
 				break
 			testpath = 'test_set/' + str(counter)
 			os.makedirs(testpath)
@@ -56,7 +60,7 @@ with open('batches.meta.txt', 'w') as meta_file:
 			urlretrieve(str(X[i][1]), filepath)
 			counter+=1
 			string = str(X[i][0])
-		elif (image_num <= 1):
+		elif (image_num <= 6):
 			filepath = path + '/' + str(image_num) + '.jpg'
 			image_num += 1
 			urlretrieve(str(X[i][1]), filepath)
@@ -64,8 +68,17 @@ meta_file.close()
 print("Classes names written in batches.meta.txt file")
 print("Images downloaded in separate folders under classes")
 print("Converting images to 32*32 format")
+#os.system("chmod +x resize-script.sh")
+#os.system("chmod +x resize_test_images.sh")
 subprocess.call(['./resize-script.sh'])
+#subprocess.call(['./resize_test_images.sh'])
 print("Image conversion to 32*32 done")
 
 print("Calling python code to convert image to .bin format")
 os.system("python convert-images-to-cifar-format.py")
+os.makedirs('cifar-10-batches-bin')
+shutil.move('data_batch_1.bin', 'cifar-10-batches-bin')
+shutil.move('test.bin', 'cifar-10-batches-bin')
+shutil.move('batches.meta.txt', 'cifar-10-batches-bin')
+os.system("tar -cvzf cifar-10-binary.tar.gz cifar-10-batches-bin")
+os.system("python cifar10_train.py")

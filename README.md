@@ -6,4 +6,6 @@ Go to VOD website and request to download the csv file containing all the ANP ar
 Download and extract the english.csv file to the same folder as this model and run Main_program.py
 
 
-first make a virtualenv with python3.5.  This is important to run tensorflow
+first make a virtualenv with python3.5.  This is important to run Main_program.py
+
+if you want to run it with python 2.7 then you need to adjust request.urlretrieve as per python2.7

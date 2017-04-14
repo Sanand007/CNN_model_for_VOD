@@ -47,8 +47,6 @@ with open('batches.meta.txt', 'w') as meta_file:
 				destpath = testpath + '/' + str(test_im_no) + '.jpg'
 				shutil.move(impath, destpath)
 				test_im_no += 1
-			if (counter == 4):
-				break
 			testpath = 'test_set/' + str(counter)
 			os.makedirs(testpath)
 			path = 'classes/' + str(counter)
@@ -60,7 +58,7 @@ with open('batches.meta.txt', 'w') as meta_file:
 			urlretrieve(str(X[i][1]), filepath)
 			counter+=1
 			string = str(X[i][0])
-		elif (image_num <= 6):
+		elif
 			filepath = path + '/' + str(image_num) + '.jpg'
 			image_num += 1
 			urlretrieve(str(X[i][1]), filepath)
@@ -78,7 +76,12 @@ print("Calling python code to convert image to .bin format")
 os.system("python convert-images-to-cifar-format.py")
 os.makedirs('cifar-10-batches-bin')
 shutil.move('data_batch_1.bin', 'cifar-10-batches-bin')
-shutil.move('test.bin', 'cifar-10-batches-bin')
+shutil.move('test_batch.bin', 'cifar-10-batches-bin')
 shutil.move('batches.meta.txt', 'cifar-10-batches-bin')
 os.system("tar -cvzf cifar-10-binary.tar.gz cifar-10-batches-bin")
+os.makedirs("/tmp/cifar10_data")
+shutil.move("cifar-10-binary.tar.gz", "/tmp/cifar10_data/")
+os.system("rm -rf classes")
+os.system("rm -rf test_set")
+os.system("rm -rf cifar-10-batches-bin")
 os.system("python cifar10_train.py")

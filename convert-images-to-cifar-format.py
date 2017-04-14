@@ -44,7 +44,7 @@ for dirname, dirnames, filenames in os.walk('./test_set'):
                     for y in range(0,32):
                         data.append(pix[x,y][color])
 
-output_file = open('test.bin', 'wb')
+output_file = open('test_batch.bin', 'wb')
 data.tofile(output_file)
 output_file.close()
 

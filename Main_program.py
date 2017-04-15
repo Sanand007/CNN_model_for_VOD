@@ -51,14 +51,17 @@ with open('batches.meta.txt', 'w') as meta_file:
 			os.makedirs(testpath)
 			path = 'classes/' + str(counter)
 			os.makedirs(path)
+			print("class and test_set " + str(counter) + " is completed")
 			image_num = 0
 			test_im_no = 0
 			filepath = path + '/' + str(image_num) + '.jpg'
 			image_num += 1
 			urlretrieve(str(X[i][1]), filepath)
 			counter+=1
+			if (counter == 60):
+				break
 			string = str(X[i][0])
-		elif
+		else:
 			filepath = path + '/' + str(image_num) + '.jpg'
 			image_num += 1
 			urlretrieve(str(X[i][1]), filepath)

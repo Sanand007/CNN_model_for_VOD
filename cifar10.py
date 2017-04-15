@@ -73,7 +73,7 @@ INITIAL_LEARNING_RATE = 0.1       # Initial learning rate.
 # names of the summaries when visualizing a model.
 TOWER_NAME = 'tower'
 
-DATA_URL = '~/Envs/AI2/cifar-10-binary.tar.gz'
+DATA_URL = '/tmp/cifar-10-binary.tar.gz'
 
 
 def _activation_summary(x):

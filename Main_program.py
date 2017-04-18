@@ -39,7 +39,9 @@ with open('batches.meta.txt', 'w') as meta_file:
 			counter += 1
 			string = str(X[0][0])
 		elif (string != str(X[i][0])):
-			meta_file.write(str(X[i][0]) + '\n')
+			#if(counter == 5):
+			#	break
+			#meta_file.write(str(X[i][0]) + '\n')
 			#print(image_num)
 			sixty_per = int(image_num*0.6)
 			for m in range(sixty_per+1, image_num):
@@ -47,6 +49,9 @@ with open('batches.meta.txt', 'w') as meta_file:
 				destpath = testpath + '/' + str(test_im_no) + '.jpg'
 				shutil.move(impath, destpath)
 				test_im_no += 1
+			if(counter == 100):
+				break
+			meta_file.write(str(X[i][0]) + '\n')
 			testpath = 'test_set/' + str(counter)
 			os.makedirs(testpath)
 			path = 'classes/' + str(counter)
@@ -57,9 +62,10 @@ with open('batches.meta.txt', 'w') as meta_file:
 			filepath = path + '/' + str(image_num) + '.jpg'
 			image_num += 1
 			urlretrieve(str(X[i][1]), filepath)
+			#counter+=1
+			#if (counter == 5):
+			#	break
 			counter+=1
-			if (counter == 60):
-				break
 			string = str(X[i][0])
 		else:
 			filepath = path + '/' + str(image_num) + '.jpg'
@@ -76,7 +82,7 @@ subprocess.call(['./resize-script.sh'])
 print("Image conversion to 32*32 done")
 
 print("Calling python code to convert image to .bin format")
-os.system("python convert-images-to-cifar-format.py")
+os.system("python convert.py")
 os.makedirs('cifar-10-batches-bin')
 shutil.move('data_batch_1.bin', 'cifar-10-batches-bin')
 shutil.move('test_batch.bin', 'cifar-10-batches-bin')
@@ -84,7 +90,7 @@ shutil.move('batches.meta.txt', 'cifar-10-batches-bin')
 os.system("tar -cvzf cifar-10-binary.tar.gz cifar-10-batches-bin")
 os.makedirs("/tmp/cifar10_data")
 shutil.move("cifar-10-binary.tar.gz", "/tmp/cifar10_data/")
-os.system("rm -rf classes")
-os.system("rm -rf test_set")
-os.system("rm -rf cifar-10-batches-bin")
+#os.system("rm -rf classes")
+#os.system("rm -rf test_set")
+#os.system("rm -rf cifar-10-batches-bin")
 os.system("python cifar10_train.py")
